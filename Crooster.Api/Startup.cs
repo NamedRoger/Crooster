@@ -1,20 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Crooster.Data;
-using Crooster.Api.Models;
-using IdentityModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Crooster.Api
 {
@@ -36,10 +26,10 @@ namespace Crooster.Api
                 Configuration.GetConnectionString("DefaultConnection")));
             
 
-            services.AddControllers();
-            services.AddMvc().AddNewtonsoftJson(op => {
-                op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            services.AddControllers().AddJsonOptions(op => {
+                op.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
             });
+            
 
             services.AddCors(op => {
                 op.AddPolicy(MyAllowSpecificOrigins, builder =>
