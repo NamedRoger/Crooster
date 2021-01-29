@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Crooster.Api.Controllers
+namespace Crooster.Controllers
 {
     [ApiController]
     [Route("[controller]")]

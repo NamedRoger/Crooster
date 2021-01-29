@@ -1,6 +1,6 @@
 using System;
 
-namespace Crooster.Api
+namespace Crooster
 {
     public class WeatherForecast
     {
