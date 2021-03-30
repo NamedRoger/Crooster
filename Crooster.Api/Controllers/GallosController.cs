@@ -185,23 +185,23 @@ namespace Crooster.Controllers
         {
             if (galloNuevo != null)
             {
-                // List<Gallo> nuevasCrias = new List<Gallo>();
-                // Parentezco parentezco = await context.Parentezcos.FirstOrDefaultAsync(p => p.Nombre == "Cría");
-                // long nuevaPlaca;
-                // for (int i = 0; i < galloNuevo.Cantidad; i++)
-                // {
-                //     var galloAnterior = await context.Gallos.OrderByDescending(g => g.Placa).FirstAsync();
-                //     nuevaPlaca = galloAnterior.Placa + 1;
-                //     nuevasCrias.Add(new Gallo()
-                //     {
-                //         Placa = nuevaPlaca,
-                //         IdGallina = galloNuevo.IdGallina,
-                //         IdSemental = galloNuevo.IdSemental,
-                //         Parentezco = parentezco
-                //     });
-                // }
-                // await context.AddRangeAsync(nuevasCrias);
-                // await context.SaveChangesAsync();
+                 List<Gallo> nuevasCrias = new List<Gallo>();
+                 Parentezco parentezco = await context.Parentezcos.FirstOrDefaultAsync(p => p.Nombre == "Cría");
+                long nuevaPlaca;
+                for (int i = 0; i < galloNuevo.Cantidad; i++)
+                {
+                     var galloAnterior = await context.Gallos.OrderByDescending(g => g.Placa).FirstAsync();
+                     nuevaPlaca = galloAnterior.Placa + 1;
+                     nuevasCrias.Add(new Gallo()
+                    {
+                        Placa = nuevaPlaca,
+                        IdGallina = galloNuevo.IdGallina,
+                        IdSemental = galloNuevo.IdSemental,
+                        Parentezco = parentezco
+                    });
+                 }
+                 await context.AddRangeAsync(nuevasCrias);
+                 await context.SaveChangesAsync();
 
 
                 return Ok(galloNuevo);
